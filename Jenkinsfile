@@ -1,9 +1,5 @@
 pipeline{
-	agent {
-        	docker {
-            		image 'python:3.10-slim'
-        	}
-    	}
+	agent any
 	stages {
 		stage('Checkout'){
 			steps{
@@ -12,21 +8,27 @@ pipeline{
 		}
 		stage('INstall Dependencies'){
 			steps{
-				sh'''
-					apt-get update
-           				apt-get install -y python3 python3-pip
-            				python3 -m pip install -r requirements.txt
+				sh'''	
+    					python3 -m venv venv
+					./venv/bin/activate
+            				pip install -r requirements.txt
 				'''
 			}
 		}
 		stage('Train MOdel'){
 			steps{
-				sh 'python3 train.py'
+				sh '''
+    				./venv/bin/activate
+    				python3 train.py
+				'''
 			}
 		}
 		stage('Test MOdel'){
 			steps{
-				sh 'python3 test.py'
+				sh '''
+    				./venv/bin/activate
+    				python3 test.py
+				'''
 			}
 		}
 		stage('Archive MOdel'){
