@@ -8,7 +8,11 @@ pipeline{
 		}
 		stage('INstall Dependencies'){
 			steps{
-				sh 'pip install -r requirements.txt'
+				sh'''
+					sudo apt-get update
+           				sudo apt-get install -y python3 python3-pip
+            				python3 -m pip install -r requirements.txt
+				'''
 			}
 		}
 		stage('Train MOdel'){
