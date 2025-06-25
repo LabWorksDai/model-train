@@ -12,7 +12,7 @@ pipeline{
     					python3 -m venv venv
 	 				chmod +x venv/bin/activate
 					./venv/bin/activate
-     					python -m pip install --upgrade pip
+     					python3 -m pip install --upgrade pip
             				pip install -r requirements.txt
 				'''
 			}
