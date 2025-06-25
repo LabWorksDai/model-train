@@ -9,7 +9,9 @@ pipeline{
 		stage('INstall Dependencies'){
 			steps{
 				sh'''	
-    					python3 -m venv venv
+    					apt-get update
+				        apt-get install -y python3 python3-venv python3-pip
+				        python3 -m venv venv
 	 				chmod +x venv/bin/activate
 					./venv/bin/activate
      					python3 -m pip install --upgrade pip
